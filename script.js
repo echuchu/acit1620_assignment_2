@@ -46,25 +46,19 @@ function renderIndex(contacts) {
     // which is an array containing many contacts,
     // each of which represents a single contact.
     // this function must actually put DOM nodes onto the web page
+    
     let docParent = document.querySelector(".main")
     
     for (i = 0; i < contacts.length; i++) {
         
-        let newContent = document.createTextNode(contacts[i]["name"])
-        
-        let elementP = document.createElement("p")
+        let contact = contacts[i]
 
-        let elementDiv = document.createElement("div")
-        elementDiv.className = "contact"
+        docParent.appendChild(createSingleIndex(contact))
 
-        let elementA = document.createElement("a")
-        elementA.setAttribute("href", "page3.html")
-
-        elementP.appendChild(newContent)
-        elementDiv.appendChild(elementP)
-        elementA.appendChild(elementDiv)
-        docParent.appendChild(elementA)
+        // for my own clarity when testing:
+        console.log(`added ${contact.name}`)
     }   
+    console.log(`added ${contacts.length} contacts`)
 }
 
 /* Here is an example of a contact list array, with two contacts already populated */
