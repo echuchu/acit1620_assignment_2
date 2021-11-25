@@ -33,6 +33,7 @@ function createSingleIndex(contact) {
     return elementA
 }
 
+
 // single contact object
 let contact = {name: "Roberta Dobbs",
       phone: "778-555-1234",
@@ -56,10 +57,11 @@ function renderIndex(contacts) {
         docParent.appendChild(createSingleIndex(contact))
 
         // for my own clarity when testing:
-        console.log(`added ${contact.name}`)
+        // console.log(`added ${contact.name}`)
     }   
-    console.log(`added ${contacts.length} contacts`)
+    // console.log(`added ${contacts.length} contacts`)
 }
+
 
 /* Here is an example of a contact list array, with two contacts already populated */
 let contactList = [
