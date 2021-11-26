@@ -3,9 +3,11 @@
 
 function cleanUpIndex() {
     // removes all of the DOM nodes that are unique to the Index page
-    parent = document.querySelector(".main")
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild)
+    if (document.title == "Contacts") {
+        parent = document.querySelector(".main")
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild)
+        }
     }
 }
 
