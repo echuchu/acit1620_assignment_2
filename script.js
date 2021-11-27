@@ -181,10 +181,11 @@ function setMultipleAttributes(element, attributes) {
  }
 
 
-function renderCreate() {
+function renderCreate(contact) {
     // creates all of the DOM nodes that are unique to the Create page
-    // function will take in a single parameter?????
-    // which is an object that represents a single contact?????
+    // function will take in a single parameter
+    // which is an object that represents a single contact
+    // decided to pre-populate input fields with contact info
     // this function must actually modify web page
     if (document.title == "Create a New Contact") {
         
@@ -229,6 +230,7 @@ function renderCreate() {
             "name": "contactname",
             "placeholder": "Contact Name"
         })
+        elementInputContactName.value = contact.name
 
         let elementButtonExtraNameField = document.createElement("button")
         setMultipleAttributes(elementButtonExtraNameField, {
@@ -247,6 +249,7 @@ function renderCreate() {
             "name": "contactphone",
             "placeholder": "Contact Phone"
         })
+        elementInputContactPhone.value = contact.phone
         
         let elementButtonExtraPhoneField = document.createElement("button")
         setMultipleAttributes(elementButtonExtraPhoneField, {
@@ -265,6 +268,7 @@ function renderCreate() {
             "name": "contactaddress",
             "placeholder": "Contact Address"
         })
+        elementInputContactAddress.value = contact.address
         
         let elementButtonExtraAddressField = document.createElement("button")
         setMultipleAttributes(elementButtonExtraAddressField, {
@@ -283,6 +287,7 @@ function renderCreate() {
             "name": "contactemail",
             "placeholder": "Contact Email"
         })
+        elementInputContactEmail.value = contact.email
         
         let elementButtonExtraEmailField = document.createElement("button")
         setMultipleAttributes(elementButtonExtraEmailField, {
@@ -340,3 +345,14 @@ function renderCreate() {
         docParent.append(elementDivContactEdit)
     }
 }
+
+// Note to self: delete later if cannot work
+// let contactKeys = ["name", "phone", "address", "email"]
+// let contactKeys = [contact.name, contact.phone, contact.address, contact.email]
+//         //  
+//         for (i = 0; i < inputs.length; i++) {
+//             let keys = contactKeys[i]
+//             console.log(keys)
+//             inputs[i].value = contactKeys[i]
+//             inputs[i].value = contact.keys
+//         }
