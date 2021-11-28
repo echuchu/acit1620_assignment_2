@@ -1,10 +1,8 @@
 // *** means comments are notes for my own reference
 
 
-
 // Re-used variable
 const docParent = document.querySelector(".main")
-
 
 
 // Contacts
@@ -63,6 +61,7 @@ function setMultipleAttributes(element, attributes) {
 
 function cleanUpIndex() {
     // removes all of the DOM nodes that are unique to the Index page
+    // the DOM nodes unique to index/Contacts are all in div.main
     
     if (document.title == "Contacts") {
         parent = document.querySelector(".main")
@@ -118,8 +117,10 @@ function renderIndex(contacts) {
 
 // View Page
 
-  function cleanUpView() {
+function cleanUpView() {
     // removes all of the DOM nodes that are unique to the View page
+    // the DOM nodes unique to view/Contact Name are all in div.main
+
     if (document.title == "Contact Name") {
         parent = document.querySelector(".main")
         while (parent.firstChild) {
@@ -181,6 +182,8 @@ function renderView(contact) {
 
 function cleanUpCreate() {
     // removes all of the DOM nodes that are unique to the Create page
+    // the DOM nodes unique to Create/Create a New Contact are all in .main
+
     if (document.title == "Create a New Contact") {
         parent = document.querySelector(".main")
         while (parent.firstChild) {
