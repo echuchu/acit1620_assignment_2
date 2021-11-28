@@ -1,5 +1,12 @@
 // *** means comments are notes for my own reference
 
+
+
+// Re-used variable
+const docParent = document.querySelector(".main")
+
+
+
 // Contacts
 
 //Single contact object
@@ -34,10 +41,10 @@ let contactList = [
 
 
 
-// Helper Functions used in functions 
+// Helper functions used in functions 
 
-//Create element and set classname
-function createElement(tag, className = "") {
+//Helper function to create element and set classname
+function createElement(tag, className) {
     let element = document.createElement(tag)
     element.className = className
     return element
@@ -53,7 +60,6 @@ function setMultipleAttributes(element, attributes) {
 
 
 // Index Page
-
 
 function cleanUpIndex() {
     // removes all of the DOM nodes that are unique to the Index page
@@ -99,22 +105,18 @@ function renderIndex(contacts) {
     // each of which represents a single contact.
     // this function must actually put DOM nodes onto the web page
 
-    if (document.title == "Contacts") {
+    for (let i = 0; i < contacts.length; i++) {
         
-        let docParent = document.querySelector(".main")
-        
-        for (i = 0; i < contacts.length; i++) {
-            
-            let contact = contacts[i]
+        let contact = contacts[i]
 
-            docParent.appendChild(createSingleIndex(contact))
+        docParent.appendChild(createSingleIndex(contact))
 
-            //***for my own clarity when testing:
-            //console.log(`added ${contact.name}`)
-        }   
-        //console.log(`added ${contacts.length} contacts`)
-    }
+        //***for my own clarity when testing:
+        //console.log(`added ${contact.name}`)
+    }   
+    //console.log(`added ${contacts.length} contacts`)
 }
+
 
 
 // View Page
@@ -136,45 +138,37 @@ function renderView(contact) {
     // function will take in a single parameter,
     // which is an object that represents a single contact
     // this function must actually modify web page
-        
-    let docParent = document.querySelector(".main")
     
-    let elementDivContactInfo = document.createElement("div")
-    elementDivContactInfo.className = "contactinfo"
+    let elementDivContactInfo = createElement("div", "contactinfo")
 
-    let elementDivContactName = document.createElement("div")
-    elementDivContactName.className = "contactname"
+    let elementDivContactName = createElement("div", "contactname")
     elementDivContactName.textContent = ` ${contact.name} `
 
     let elementImg = document.createElement("img")
-    elementImg.setAttribute("src", "./img/profile.jpg")
-    elementImg.className = "profilepic"
-    elementImg.setAttribute("alt", "Profile picture")
+    setMultipleAttributes(elementImg, {
+        "src": "./img/profile.jpg",
+        "class": "profilepic",
+        "alt": "Profile picture"
+    })
 
     elementDivContactName.appendChild(elementImg)
 
-    let elementDivContactEmail = document.createElement("div")
-    elementDivContactEmail.className = "contactemail"
+    let elementDivContactEmail = createElement("div", "contactemail")
     elementDivContactEmail.textContent = `email: ${contact.email}`
 
-    let elementDivContactPhone = document.createElement("div")
-    elementDivContactPhone.className = "contactphone"
+    let elementDivContactPhone = createElement("div", "contactphone")
     elementDivContactPhone.textContent = `cell: ${contact.phone}`
 
-    let elementDivContactAddress = document.createElement("div")
-    elementDivContactAddress.className = "contactaddress"
+    let elementDivContactAddress = createElement("div", "contactaddress")
     elementDivContactAddress.textContent = `address: ${contact.address}`
 
-    let elementDivButtons = document.createElement("div")
-    elementDivButtons.className = "buttons"
+    let elementDivButtons = createElement("div", "buttons")
 
-    let elementButtonEdit = document.createElement("button")
-    elementButtonEdit.className = "button edit"
+    let elementButtonEdit = createElement("button", "button edit")
     elementButtonEdit.value = "Edit"
     elementButtonEdit.textContent = "Edit"
 
-    let elementButtonClose = document.createElement("button")
-    elementButtonClose.className = "button close"
+    let elementButtonClose = createElement("button", "button close")
     elementButtonClose.value = "Close"
     elementButtonClose.textContent = "Close"
 
@@ -206,17 +200,14 @@ function renderCreate(contact) {
     // this function must actually modify web page
     // decided to pre-populate input fields with contact info
 
-    let docParent = document.querySelector(".main")
-
-    let elementDivContactEdit = document.createElement("div")
-    elementDivContactEdit.className = "contactedit"
-
     // *** self-note of HTML structure
     // .main > div.contactedit > div.contactimg > img.profilepic
     //       > div.form > form > div.inputcontainer * 4 > name/phone/address/email/buttons
 
-    let elementDivContactImg = document.createElement("div")
-    elementDivContactImg.className = "contactimg"
+    //Top divs of main
+    let elementDivContactEdit = createElement("div", "contactedit")
+
+    let elementDivContactImg = createElement("div", "contactimg")
 
     let elementImgProfilePic = document.createElement("img")
     setMultipleAttributes(elementImgProfilePic, {
@@ -225,11 +216,12 @@ function renderCreate(contact) {
         "alt": "Profile picture"
     })
 
+    //Append top divs in main
     elementDivContactImg.append(elementImgProfilePic)
     elementDivContactEdit.append(elementDivContactImg)
 
-    let elementDivForm = document.createElement("div")
-    elementDivForm.className = "form"
+    //Bottom divs of main
+    let elementDivForm = createElement("div", "form")
 
     let elementForm = document.createElement("form")
 
@@ -311,8 +303,7 @@ function renderCreate(contact) {
 
     // End of Form Buttons
 
-    let elementDivButtons = document.createElement("div")
-    elementDivButtons.className = "buttons"
+    let elementDivButtons = createElement("div", "buttons")
 
     let elementButtonSaveContact = document.createElement("button")
     setMultipleAttributes(elementButtonSaveContact, {
@@ -332,6 +323,7 @@ function renderCreate(contact) {
     })
     elementButtonCancel.textContent = "Cancel"
     
+    //Append buttons
     elementDivButtons.append(elementButtonSaveContact, elementButtonCancel)
 
     //Arrays of elements
@@ -339,27 +331,25 @@ function renderCreate(contact) {
     
     let inputbuttons = [elementButtonExtraNameField, elementButtonExtraPhoneField, elementButtonExtraAddressField, elementButtonExtraEmailField]
     
-    // Loop to build Input Container divs and append its children
-    for (i = 0; i <=3 ; i++) {
+    //Loop to build Input Container divs and append its children
+    for (let i = 0; i <=3 ; i++) {
         let elementDivInputContainer = document.createElement("div")
         elementDivInputContainer.className = "inputcontainer"
         elementDivInputContainer.append(inputs[i], inputbuttons[i])
         elementForm.append(elementDivInputContainer)
     }
 
-    // //***Could not figure out how to address if order of inputs does not match order of contact properties, did not implement loop
+    // //***Could not figure out how to address if order of inputs does not match order of contact properties, did not implement loop, left for my own reference
     // //Auto-populate form with contact info from parameter
     // let contactKeys = Object.keys(contact)
-    // for (i = 0; i < inputs.length; i++) {
+    // for (let i = 0; i < inputs.length; i++) {
     //     let keys = contactKeys[i]
     //     inputs[i].value = contact[contactKeys[i]]
     // }
 
     // Finish Appending
-
     elementForm.append(elementDivButtons)
     elementDivForm.append(elementForm)
     elementDivContactEdit.append(elementDivForm)
-    
     docParent.append(elementDivContactEdit)
 }
