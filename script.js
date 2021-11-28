@@ -83,14 +83,11 @@ function createSingleIndex(contact) {
     let elementA = document.createElement("a")
     elementA.setAttribute("href", "page3.html")
 
-    let elementDiv = document.createElement("div")
-    elementDiv.className = "contact"
+    let elementDiv = createElement("div", "contact")
 
     let elementP = document.createElement("p")
-
-    let newContent = document.createTextNode(contact["name"])
+    elementP.textContent = `${contact["name"]}`
     
-    elementP.appendChild(newContent)
     elementDiv.appendChild(elementP)
     elementA.appendChild(elementDiv)
     
@@ -120,7 +117,6 @@ function renderIndex(contacts) {
 
 
 // View Page
-
 
   function cleanUpView() {
     // removes all of the DOM nodes that are unique to the View page
@@ -180,8 +176,8 @@ function renderView(contact) {
 }
 
 
-// Create Page
 
+// Create Page
 
 function cleanUpCreate() {
     // removes all of the DOM nodes that are unique to the Create page
@@ -192,6 +188,7 @@ function cleanUpCreate() {
         }
     }
 }
+
 
 function renderCreate(contact) {
     // creates all of the DOM nodes that are unique to the Create page
